@@ -1,0 +1,46 @@
+.site-header {
+
+    & .account {
+
+        & .cart {
+
+            & .items {
+                font-size: 8px;
+                right: 0;
+                bottom: 0;
+            }
+        }
+    }
+
+    & .top-bar {
+
+        & .navbar-toggler {
+            &:focus {
+                outline: none;
+            }
+        }
+
+        & .navbar-nav {
+            & .menu-item-has-children {
+
+                & .dropdown-menu {
+                    margin: 0;
+                    padding: 0;
+
+                    & .dropdown-menu {
+                        left: 100%;
+                        top: 0;
+                    }
+                }
+
+                &:hover {
+                    
+                    & > .dropdown-menu {
+                        display: block;
+                    }
+                }
+
+            }
+        }
+    }
+}

@@ -53,8 +53,8 @@ final class UCEFWOO_theme_class {
             /** Non Admin actions */
         } else {
 
-            // Load theme CSS.
-			add_action( 'wp_enqueue_scripts', array( 'UCEFWOO_Theme_Class', 'theme_css' ) );
+            // Load theme CSS & JS.
+            add_action( 'wp_enqueue_scripts', array( 'UCEFWOO_Theme_Class', 'enqueue_scripts' ) );
 
         }
 
@@ -71,8 +71,8 @@ final class UCEFWOO_theme_class {
 		define( 'UCEF_WOO_THEME_VERSION', $version );
 
 		// Javascript and CSS Paths.
-		define( 'UCEF_WOO_JS_DIR_URI', UCEF_WOO_THEME_URI . '/assets/js/' );
-		define( 'UCEF_WOO_CSS_DIR_URI', UCEF_WOO_THEME_URI . '/assets/css/' );
+		define( 'UCEF_WOO_JS_DIR_URI', UCEF_WOO_THEME_URI . '/assets/dist/js/' );
+		define( 'UCEF_WOO_CSS_DIR_URI', UCEF_WOO_THEME_URI . '/assets/dist/css/' );
 
 		// Include Paths.
 		define( 'UCEF_WOO_INC_DIR', UCEF_WOO_THEME_DIR . '/inc/' );
@@ -90,6 +90,7 @@ final class UCEFWOO_theme_class {
         $dir = UCEF_WOO_INC_DIR;
 
         require_once $dir . 'helpers.php';
+        require_once $dir . 'walker/class-wp-bootstrap-navwalker.php';
 
         // WooCommerce
         if ( OCEANWP_WOOCOMMERCE_ACTIVE ) {
@@ -152,10 +153,7 @@ final class UCEFWOO_theme_class {
         // Register navigation menus.
 		register_nav_menus(
 			array(
-				'topbar_menu' => esc_html__( 'Top Bar', 'ucef-woo' ),
-				'main_menu'   => esc_html__( 'Main', 'ucef-woo' ),
-				'footer_menu' => esc_html__( 'Footer', 'ucef-woo' ),
-				'mobile_menu' => esc_html__( 'Mobile (optional)', 'ucef-woo' ),
+				'primary' => esc_html__( 'Primary Menu', 'ucef-woo' ),
 			)
 		);
 
@@ -175,8 +173,8 @@ final class UCEFWOO_theme_class {
          * Add theme support for site logo
          */
         add_theme_support( 'custom-logo', array(
-            'height'        => 85,
-            'width'         => 160,
+            'height'        => 30,
+            'width'         => 100,
             'flex_height'   => true,
             'flex_width'    => true
         ) );
@@ -237,6 +235,48 @@ final class UCEFWOO_theme_class {
             'before_title'  => '<h4 class="widget-title">',
             'after_title'   => '</h4>',
         ) );
+
+    }
+
+    /**
+	 * Load scripts in the WP admin
+	 */
+	public static function admin_scripts() {
+		global $pagenow;
+		// if ( 'nav-menus.php' === $pagenow ) {
+		// 	wp_enqueue_style( 'oceanwp-menus', OCEANWP_INC_DIR_URI . 'walker/assets/menus.css', false, OCEANWP_THEME_VERSION );
+		// }
+    }
+    
+    /**
+     * Load front-end scripts
+     */
+    public static function enqueue_scripts() {
+
+        if( strstr( $_SERVER['SERVER_NAME'], 'local' ) ) {
+
+            // Enqueue styles & scripts in development mode
+            wp_enqueue_script( 'main-js', 'http://localhost:3000/bundled.js', ['jquery'], '1.0', true );
+
+        }else {
+
+            // Define dir
+            $dirCSS         = UCEF_WOO_CSS_DIR_URI;
+            $dirJS          = UCEF_WOO_JS_DIR_URI;
+            $theme_version = UCEF_WOO_THEME_VERSION;
+
+            // Main Style.css file
+            wp_enqueue_style( 'ucef-woo-style', $dirCSS . 'main.min.css', false, $theme_version );
+
+            // Load minified js.
+            wp_enqueue_script( 'ucef-woo-main', $dirJS . 'main.min.js', array( 'jquery' ), $theme_version, true );
+            
+        }
+        
+        // Comment reply.
+        if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+            wp_enqueue_script( 'comment-reply' );
+        }
 
     }
 
