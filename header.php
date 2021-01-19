@@ -23,7 +23,7 @@
         <header class="site-header" role="banner">
 
             <?php if ( class_exists( 'WooCommerce' ) ): ?>
-            <section class="account">
+            <section class="account mt-1 mb-1">
                 <div class="container">
                     <div class="d-flex align-items-end justify-content-end">
                         <?php if ( is_user_logged_in() ): ?>
@@ -66,9 +66,9 @@
                         <?php
                         wp_nav_menu( array(
                             'theme_location'    => 'primary',
-                            'depth'             => 3,
+                            'depth'             => 5,
                             'container'         => 'div',
-                            'container_class'   => 'collapse navbar-collapse',
+                            'container_class'   => 'collapse navbar-collapse justify-content-end',
                             'container_id'      => 'bs-example-navbar-collapse-1',
                             'menu_class'        => 'nav navbar-nav',
                             'fallback_cb'       => 'WalkerNav::fallback',

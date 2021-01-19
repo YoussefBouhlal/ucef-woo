@@ -253,7 +253,7 @@ final class UCEFWOO_theme_class {
      */
     public static function enqueue_scripts() {
 
-        if( strstr( $_SERVER['SERVER_NAME'], 'local' ) ) {
+        if( strstr( $_SERVER['SERVER_NAME'], 'test' ) ) {
 
             // Enqueue styles & scripts in development mode
             wp_enqueue_script( 'main-js', 'http://localhost:3000/bundled.js', ['jquery'], '1.0', true );

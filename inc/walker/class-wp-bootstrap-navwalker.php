@@ -49,7 +49,7 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) {
 			}
 			$indent = str_repeat( $t, $depth );
 			// Default class to add to the file.
-			$classes = array( 'dropdown-menu' );
+			$classes = array( 'dropdown-menu dropdown-menu-right' );
 			/**
 			 * Filters the CSS class(es) applied to a menu list element.
 			 *
@@ -76,7 +76,7 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) {
 				// build a string to use as aria-labelledby.
 				$labelledby = 'aria-labelledby="' . end( $matches[2] ) . '"';
 			}
-			$output .= "{$n}{$indent}<ul$class_names $labelledby role=\"menu\">{$n}";
+			$output .= "{$n}{$indent}<ul $class_names $labelledby role=\"menu\">{$n}";
 		}
 
 		/**

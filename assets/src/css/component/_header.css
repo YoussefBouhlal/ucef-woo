@@ -28,7 +28,7 @@
                     padding: 0;
 
                     & .dropdown-menu {
-                        left: 100%;
+                        right: 100%;
                         top: 0;
                     }
                 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * The template to display pages
+ * The front-page template to display the Home
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  * 
@@ -9,6 +9,8 @@
 
 get_header();
 ?>
+
+
 
 <?php
 get_footer();
