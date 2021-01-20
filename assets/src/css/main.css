@@ -6,9 +6,11 @@
 /*!--------------------------
 # Base
 ----------------------------*/
+@import './base/_mixins';
 
 
 /*!--------------------------
 # components
 ----------------------------*/
 @import './component/_header';
+@import './component/_carousel';

@@ -20,10 +20,10 @@
 <body <?php body_class(); ?> >
     <?php wp_body_open(); ?>
     <div id="page" class="site">
-        <header class="site-header" role="banner">
+        <header class="site-header pt-3 pb-3" role="banner">
 
             <?php if ( class_exists( 'WooCommerce' ) ): ?>
-            <section class="account mt-1 mb-1">
+            <section class="account">
                 <div class="container">
                     <div class="d-flex align-items-end justify-content-end">
                         <?php if ( is_user_logged_in() ): ?>
@@ -45,17 +45,18 @@
             </section><!-- .account 'show if woocommerce activated' -->
             <?php endif; ?>
 
-            <section class="top-bar">
+            <section class="top-bar mt-3">
                 <div class="container">
                     <nav class="navbar navbar-expand-md navbar-light p-0">
 
-                        <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-                            <?php if ( has_custom_logo() ): ?>
-                                <?php the_custom_logo(); ?>
-                            <?php else: ?>
+                        <?php if ( has_custom_logo() ): ?>
+                            <?php the_custom_logo(); ?>
+                        <?php else: ?>
+                            <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
                                 <p class="h4 text-dark"><?php bloginfo( 'title' ); ?></p>
-                            <?php endif; ?>
-                        </a><!-- brand -->
+                            </a>
+                        <?php endif; ?>
+                        <!-- brand -->
 
                         <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
                             <span>
