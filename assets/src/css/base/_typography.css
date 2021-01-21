@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&family=Seaweed+Script&display=swap');
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.fw-400 {
+    font-weight: 400;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.f-cursive {
+    font-family: 'Seaweed Script', cursive;
+}

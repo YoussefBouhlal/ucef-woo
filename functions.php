@@ -58,6 +58,8 @@ final class UCEFWOO_theme_class {
 
         }
 
+        add_filter( 'excerpt_length', array( 'UCEFWOO_Theme_Class', 'custom_excerpt_length' ), 999 );
+
     }
 
     /**
@@ -207,7 +209,14 @@ final class UCEFWOO_theme_class {
         add_theme_support( 'responsive-embeds' );
 
         // Declare support for selective refreshing of widgets.
-		add_theme_support( 'customize-selective-refresh-widgets' );
+        add_theme_support( 'customize-selective-refresh-widgets' );
+        
+        /*
+         * Add featured image sizes
+         */
+        add_image_size('ucef-woo-home-slider', 800, 800, array( 'center', 'center' ) );
+        add_image_size('ucef-woo-first-article', 900, 600, array( 'center', 'center' ) );
+        add_image_size('ucef-woo-second-article', 200, 200, array( 'center', 'center' ) );
 
     }
 
@@ -278,6 +287,10 @@ final class UCEFWOO_theme_class {
             wp_enqueue_script( 'comment-reply' );
         }
 
+    }
+
+    public static function custom_excerpt_length() {
+        return 10;
     }
 
 }

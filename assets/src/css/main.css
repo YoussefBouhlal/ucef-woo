@@ -7,6 +7,7 @@
 # Base
 ----------------------------*/
 @import './base/_mixins';
+@import './base/_typography';
 
 
 /*!--------------------------
@@ -14,3 +15,6 @@
 ----------------------------*/
 @import './component/_header';
 @import './component/_carousel';
+@import './component/_sections';
+@import './component/_article-first';
+@import './component/_article-second';

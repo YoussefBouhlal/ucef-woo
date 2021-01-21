@@ -27,9 +27,14 @@ if ( ! class_exists( 'Ucef_Woo_Customizer' ) ) :
         public function setup( $wp_customize ) {
 
             /**
-             * customizer for the home page
+             * customizer for the home carousel page
              */
             $this->carousell_home( $wp_customize );
+            
+            /**
+             * customizer for the home page popular products
+             */
+            $this->home_products_blog( $wp_customize );
         }
 
         public function carousell_home( $wp_customize ) {
@@ -40,7 +45,7 @@ if ( ! class_exists( 'Ucef_Woo_Customizer' ) ) :
             $wp_customize->add_panel( 'ucef_woo_carousell_panel', array(
                 'priority'       => 99,
                 'capability'     => 'edit_theme_options',
-                'title'          => 'Carousell',
+                'title'          => __( 'Carousell', 'ucef-woo' ),
             ) );
 
             /**
@@ -100,6 +105,109 @@ if ( ! class_exists( 'Ucef_Woo_Customizer' ) ) :
 
             }
         }
+
+        public function home_products_blog( $wp_customize ) {
+
+            /**
+             * Home products & blog Panel
+             */
+            $wp_customize->add_panel( 'ucef_woo_home_products_panel', array(
+                'priority'       => 99,
+                'capability'     => 'edit_theme_options',
+                'title'          => __( 'Home Products & Blog', 'ucef-woo' ),
+            ) );
+
+            // Popular Products section
+            $wp_customize->add_section( 'ucef_woo_popular_products_section', array(
+                'title'         => __( 'Popular Products', 'ucef-woo' ),
+                'panel'         => 'ucef_woo_home_products_panel'
+            ) );
+
+            /**
+             * Popular Products Max Number
+             */
+            $wp_customize->add_setting( 'ucef_woo_popular_max_num', array(
+                'type'              => 'theme_mod',
+                'default'           => '',
+                'sanitize_callback' => 'absint'
+            ) );
+            $wp_customize->add_control( 'ucef_woo_popular_max_num', array(
+                'label'         => __( 'Max Products', 'ucef-woo' ),
+                'section'       => 'ucef_woo_popular_products_section',
+                'type'          => 'number'
+            ) );
+            
+            /**
+             * Popular Products Max Columns
+             */
+            $wp_customize->add_setting( 'ucef_woo_popular_max_col', array(
+                'type'              => 'theme_mod',
+                'default'           => '',
+                'sanitize_callback' => 'absint'
+            ) );
+            $wp_customize->add_control( 'ucef_woo_popular_max_col', array(
+                'label'         => __( 'Max Columns', 'ucef-woo' ),
+                'section'       => 'ucef_woo_popular_products_section',
+                'type'          => 'number'
+            ) );
+
+            // New arrivals section
+            $wp_customize->add_section( 'ucef_woo_new_arrivals_section', array(
+                'title'         => __( 'New Arrivals', 'ucef-woo' ),
+                'panel'         => 'ucef_woo_home_products_panel'
+            ) );
+            
+            /**
+             * New Arrivals Max Number
+             */
+            $wp_customize->add_setting( 'ucef_woo_newarrivals_max_num', array(
+                'type'              => 'theme_mod',
+                'default'           => '',
+                'sanitize_callback' => 'absint'
+            ) );
+            $wp_customize->add_control( 'ucef_woo_newarrivals_max_num', array(
+                'label'         => __( 'Max Products', 'ucef-woo' ),
+                'section'       => 'ucef_woo_new_arrivals_section',
+                'type'          => 'number'
+            ) );
+            
+            /**
+             * Popular Products Max Columns
+             */
+            $wp_customize->add_setting( 'ucef_woo_newarrivals_max_col', array(
+                'type'              => 'theme_mod',
+                'default'           => '',
+                'sanitize_callback' => 'absint'
+            ) );
+            $wp_customize->add_control( 'ucef_woo_newarrivals_max_col', array(
+                'label'         => __( 'Max Columns', 'ucef-woo' ),
+                'section'       => 'ucef_woo_new_arrivals_section',
+                'type'          => 'number'
+            ) );
+
+            // Popular Products section
+            $wp_customize->add_section( 'ucef_woo_blog_section', array(
+                'title'         => __( 'Blog', 'ucef-woo' ),
+                'panel'         => 'ucef_woo_home_products_panel'
+            ) );
+
+            $wp_customize->add_setting( 'ucef_woo_show_blog' , array(
+                'type'              => 'theme_mod',
+                'default'           => '',
+                'sanitize_callback' => array( $this, 'sanitize_checkbox')
+            ) );
+    
+            $wp_customize->add_control( 'ucef_woo_show_blog' , array(
+                'label'         => __( 'Show Blog', 'ucef' ),
+                'section'       => 'ucef_woo_blog_section',
+                'type'          => 'checkbox'
+            ) );
+        }
+
+        function sanitize_checkbox( $checked ) {
+            return ( ( isset ( $checked ) && true == $checked ) ? true : false );
+        }
+        
     }
 
 endif;

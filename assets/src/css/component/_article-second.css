@@ -1,0 +1,30 @@
+.article-second {
+    display: flex;
+
+    & a {
+        color: #6c757d;
+    }
+    &__section-text {
+        flex-basis: 1;
+        flex-grow: 1;
+    }
+    &__section-image {
+        flex-basis: 100px;
+        min-width: 100px;
+        height: 100px;
+
+        @mixin atSmall {
+            flex-basis: 117px;
+            min-width: 117px;
+            height: 117px;
+        }
+    }
+    &__image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.2);
+    }
+}
