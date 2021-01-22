@@ -228,7 +228,7 @@ final class UCEFWOO_theme_class {
 
         register_sidebar( array(
             'name'          => esc_html__( 'Main Sidebar', 'ucef-woo' ),
-            'id'            => 'ucef-sidebar-main',
+            'id'            => 'ucef-woo-sidebar-main',
             'description'   => esc_html__( 'Widgets in this area will be displayed in the blog page', 'ucef-woo' ),
             'before_widget' => '<div id="%1$s" class="widget %2$s widget-wrapper">',
             'after_widget'  => '</div>',
@@ -240,16 +240,6 @@ final class UCEFWOO_theme_class {
             'name'          => esc_html__( 'Shop Sidebar', 'ucef-woo' ),
             'id'            => 'ucef-sidebar-shop',
             'description'   => esc_html__( 'Widgets in this area will be displayed in the shop page if WooCommerce plugin is activated', 'ucef-woo' ),
-            'before_widget' => '<div id="%1$s" class="widget %2$s widget-wrapper">',
-            'after_widget'  => '</div>',
-            'before_title'  => '<h4 class="widget-title">',
-            'after_title'   => '</h4>',
-        ) );
-        
-        register_sidebar( array(
-            'name'          => esc_html__( 'Footer Sidebar 1', 'ucef-woo' ),
-            'id'            => 'ucef-woo-sidebar-footer-1',
-            'description'   => esc_html__( 'Widgets in this area will be displayed in the footer', 'ucef-woo' ),
             'before_widget' => '<div id="%1$s" class="widget %2$s widget-wrapper">',
             'after_widget'  => '</div>',
             'before_title'  => '<h4 class="widget-title">',

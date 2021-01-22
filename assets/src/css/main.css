@@ -18,4 +18,5 @@
 @import './component/_sections';
 @import './component/_article-first';
 @import './component/_article-second';
+@import './component/_blog-page';
 @import './component/_footer';

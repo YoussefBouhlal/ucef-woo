@@ -126,11 +126,15 @@ get_header();
                             'ignore_sticky_posts'   => true,
                         );
                         $blog_posts = new WP_Query( $args );
+                        $count = count( $blog_posts->posts );
                         $index      = 1;
 
+                        // If there are any posts
                         if ( $blog_posts->have_posts() ):
+                            // Lood posts loop
                             while ( $blog_posts->have_posts() ): $blog_posts->the_post();
 
+                                // the first article
                                 if ( $index == 1 ): ?>
 
                                     <div class="col-12 col-md-6">
@@ -139,7 +143,7 @@ get_header();
 
                                 <?php
                                 else:
-
+                                    // befoor the second article
                                     if ( $index == 2 ): ?>
                                         <div class="col-12 col-md-6">
                                     <?php
@@ -147,7 +151,8 @@ get_header();
 
                                     get_template_part( 'template-parts/articles/article', 'second' );
 
-                                    if ( $index == 5 ): ?>
+                                    // after the fift article
+                                    if ( $index == $count ): ?>
                                         </div>
                                     <?php
                                     endif;
