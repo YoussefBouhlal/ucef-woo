@@ -37,7 +37,7 @@ get_header();
                                 </div>
                             <?php
                             else:
-                                // befoor the second article open col-2->row-1
+                                // befor the second article open col-2->row-1
                                 if ( $index == 2 ): ?>
                                     <div class="col-12 col-md-6">
                                 <?php

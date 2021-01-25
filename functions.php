@@ -58,7 +58,7 @@ final class UCEFWOO_theme_class {
 
         }
 
-        add_filter( 'excerpt_length', array( 'UCEFWOO_Theme_Class', 'custom_excerpt_length' ), 999 );
+        add_filter( 'excerpt_length', array( 'UCEFWOO_Theme_Class', 'custom_excerpt_length' ), 999 );        
 
     }
 
@@ -186,16 +186,13 @@ final class UCEFWOO_theme_class {
 		 * Switch default core markup for search form, comment form, comments, galleries, captions and widgets
 		 * to output valid HTML5.
 		 */
-		add_theme_support(
-			'html5',
-			array(
-				'comment-form',
-				'comment-list',
-				'gallery',
-				'caption',
-				'widgets',
-			)
-        );
+		add_theme_support( 'html5', array(
+            'comment-form',
+            'comment-list',
+            'gallery',
+            'caption',
+            'widgets',
+		));
         
 		// Declare WooCommerce support.
 		add_theme_support( 'woocommerce' );

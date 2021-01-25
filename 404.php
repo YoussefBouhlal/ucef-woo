@@ -5,6 +5,8 @@
  * @package Ucef Woo
  */
 
+use Ucef\Api\Customizer\Homepage;
+
 get_header();
 ?>
 
@@ -19,12 +21,17 @@ get_header();
                 <?php
                     if ( class_exists( 'WooCommerce' ) ) {
                         // if woocommerce active show shop button
-
+                        $shop_page_url = get_permalink( WC_get_page_id( 'shop' ) );
+                        ?>
+                        <div class="text-center my-4">
+                            <a href="<?php esc_url( $shop_page_url ); ?>" class="btn btn-success"><?php esc_html_e( 'Go To Shop', 'ucef-woo' ); ?></a>
+                        </div>
+                        <?php
                     } else {
                         // show recent posts
-                        the_widget( 'WP_Widget_Recent_posts', array(
-                            'title'     => esc_html__( 'Take a Look at Our Latest Posts', 'ucef-woo' ),
-                            'number'    => 2
+                        the_widget( 'WP_Widget_Recent_Posts', array(
+                            'title'     => esc_html__('Take a Look at Our Latest Posts', 'ucef'),
+                            'number'    => 3
                         ) );
                     }
                 ?>
