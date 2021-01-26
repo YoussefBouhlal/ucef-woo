@@ -12,3 +12,10 @@ if (module.hot) {
  */
 import 'popper.js';
 import 'bootstrap';
+
+/**
+ * Import JS Files
+ */
+import Comments from './components/Comments';
+
+new Comments();
