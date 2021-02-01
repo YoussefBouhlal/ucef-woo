@@ -58,7 +58,11 @@ final class UCEFWOO_theme_class {
 
         }
 
-        add_filter( 'excerpt_length', array( 'UCEFWOO_Theme_Class', 'custom_excerpt_length' ), 999 );        
+        // custom excerpt length
+        add_filter( 'excerpt_length', array( 'UCEFWOO_Theme_Class', 'custom_excerpt_length' ), 999 );
+
+        // move comment field to bottom
+        add_filter( 'comment_form_fields', array( 'UCEFWOO_Theme_Class', 'move_comment_field_to_bottom' ) );
 
     }
 
@@ -93,6 +97,7 @@ final class UCEFWOO_theme_class {
 
         require_once $dir . 'helpers.php';
         require_once $dir . 'walker/class-wp-bootstrap-navwalker.php';
+        require_once $dir . 'walker/class-wp-comment-walker.php';
 
         // WooCommerce
         if ( OCEANWP_WOOCOMMERCE_ACTIVE ) {
@@ -289,6 +294,15 @@ final class UCEFWOO_theme_class {
 
     public static function custom_excerpt_length() {
         return 10;
+    }
+
+    public static function move_comment_field_to_bottom( $fields ) {
+
+        $comment_field = $fields['comment'];
+        unset( $fields['comment'] );
+        $fields['comment'] = $comment_field;
+
+        return $fields;
     }
 
 }

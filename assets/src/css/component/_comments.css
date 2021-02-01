@@ -1,3 +1,28 @@
 .comments-area {
-    border-top: 1px solid rgba(0,0,0,0.3);
+
+    & .comment-reply-title {
+
+        & small {
+            margin-left: 10px;
+
+            & a {
+                font-size: 14px;
+                color: #6C757D;
+            }
+        }
+    }
+
+    & .comment-pagination {
+
+        & > * {
+            border: 1px solid rgba(0,0,0,0.1);
+            padding: 10px;
+            color: #212529;
+        }
+        & .current {
+            background-color: #212529;
+            color: #fff
+        }
+    }
+
 }

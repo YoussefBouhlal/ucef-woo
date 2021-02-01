@@ -17,15 +17,25 @@ class Comments
         // Fields Focus Event to Remove Error CSS Classes
         const fields = [this.text, this.author, this.email];
         fields.forEach(field => {
-            field.addEventListener( 'focus', (e) => this.removeErrClass(e) );
+            if ( field ) {
+                field.addEventListener( 'focus', (e) => this.removeErrClass(e) );
+            }
         });
     }
 
     validation(e) {
 
-        let textVal     = this.text.value;
-        let authorVal   = this.author.value;
-        let emailVal    = this.email.value;
+        let textVal     = '';
+        let authorVal   = '';
+        let emailVal    = '';
+
+        if ( ! this.text ) { textVal = 'nothing'; }
+        if ( ! this.author ) { authorVal = 'nothing'; }
+        if ( ! this.email ) { emailVal = 'default@email.com'; }
+
+        if( this.text )textVal      = this.text.value;
+        if( this.author )authorVal  = this.author.value;
+        if( this.email )emailVal    = this.email.value;
         
         if ( textVal == '' ) {
             e.preventDefault();

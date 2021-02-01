@@ -18,52 +18,43 @@ if ( post_password_required() ) {
 }
 ?>
 
-<div id="comments" class="comments-area mt-4 pt-2">
 
-    <?php if ( have_comments() ) : ?>
+<div id="comments" class="comments-area border-top pt-2 mt-2">
 
-        <h2 class="comments-title">
+    <!-- Section header -->
+    <div class="col">
+        <h4 class="comments-title">
             <?php
                 printf(
-                    esc_html( _nx( 'One comment on &ldquo;%2$s&rdquo;', '%1$s comments on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'ucef-woo' ) ),
+                    esc_html( __( 'Comments (%s)', 'ucef-woo' ) ),
                     number_format_i18n( get_comments_number() ),
-                    '<span>' . get_the_title() . '</span>'
                 );
             ?>
-        </h2>
+        </h4>
+    </div>
 
-        <?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ):?>
-            <nav id="comment-nav-top" class="comment-navigation" role="navigation">
-                <h3><?php esc_html_e( 'Comment navigation', 'ucef-woo' ) ?></h3>
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        <div class="post-link-nav">
-                            <span class="chevron-left">left</span>
-                            <?php previous_comments_link( esc_html__( 'Previous', 'ucef-woo') ); ?>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="post-link-nav">
-                            <?php next_comments_link( esc_html__( 'Next', 'ucef-woo') ); ?>
-                            <span class="chevron-right">right</span>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        <?php endif; ?>
+    <!-- Add comment button -->
+    <div class="col mb-5">
+        <a class="btn btn-success btn-block" href="#respond" >
+            <?php _e( 'Add Your Comment', 'ucef-woo' ); ?>
+        </a>
+    </div>
 
-        <ol class="comment-list">
+    <!-- Section comments -->
+    <?php if ( have_comments() ) : ?>
+
+        <div class="col mb-5">
             <?php
                 $args = array(
-                    'walker'            => null,
-                    'max_depth'         => 2,
-                    'style'             => 'ol',
+                    'walker'            => new WP_Comment_Walker,
+                    'max_depth'         => '4',
+                    'style'             => '',
                     'callback'          => null,
                     'end-callback'      => null,
                     'type'              => 'all',
                     'reply_text'        => 'Reply',
                     'page'              => '',
-                    'per_page'          => '5',
+                    'per_page'          => '',
                     'avatar_size'       => 25,
                     'reverse_top_level' => null,
                     'reverse_children'  => '',
@@ -73,78 +64,89 @@ if ( post_password_required() ) {
                 );
                 wp_list_comments( $args );
             ?>
-        </ol>
+        </div>
 
-        <?php the_comments_navigation(); ?>
+        <div class="comment-pagination col mb-5">
+            <?php
+            paginate_comments_links( array(
+                'screen_reader_text'=> __('Pagination','ucef-woo'),
+                'prev_text' => '&laquo;',
+                'next_text' => '&raquo;'
+            ) )
+            ?>
+        </div>
 
         <?php if ( !comments_open() && get_comments_number() ): ?>
-            <div class="no-comments"><?php esc_html_e( 'Comments are closed', 'ucef-woo' ); ?></div>            
+            <div class="col">
+                <div class="no-comments"><?php esc_html_e( 'Comments are closed', 'ucef-woo' ); ?></div>     
+            </div>
         <?php endif;?>
 
-    <?php endif; // Check for have_comments(). ?>
+    <?php endif;?>
 
+    <!-- New comment -->
+    <div class="col">
+    
+        <?php
+            $fields = array(
+                'author' => sprintf(
+                    '<div class="form-group">%s %s</div>',
+                    sprintf(
+                        '<input id="author" name="author" type="text" class="form-control" value="%s" placeholder="%s" required="required" />',
+                        esc_attr( $commenter['comment_author'] ),
+                        __( 'Name', 'ucef-woo' )
+                    ),
+                    sprintf(
+                        '<small class="text-danger d-none">%s</small>',
+                        __( 'Please Enter Your Name', 'ucef-woo')
+                    )
+                ),
+                'email'  => sprintf(
+                    '<div class="form-group">%s %s</div>',
+                    sprintf(
+                        '<input id="email" name="email" type="email" class="form-control" value="%s" placeholder="%s" aria-describedby="email-notes" required="required" />',
+                        esc_attr( $commenter['comment_author_email'] ),
+                        __( 'Email', 'ucef-woo' )
+                    ),
+                    sprintf(
+                        '<small class="text-danger d-none">%s</small>',
+                        __( 'Please Enter Your Email', 'ucef-woo')
+                    )
+                ),
+            );
+            $args = array(
+                'must_log_in'           => sprintf(
+                    '<p class="must-log-in">%s</p>',
+                    __( 'You must be logged in to post a comment')
+                ),
+                'logged_in_as'          => sprintf(
+                    '<p class="logged-in-as m-0">%s %s</p>',
+                    __( 'Hello', 'ucef-woo' ),
+                    esc_html( wp_get_current_user()->user_login )
+                ),
+                'class_submit'          => 'btn btn-block btn-success',
+                'label_submit'          => __( 'Submit Comment', 'ucef-woo' ),
+                'comment_notes_before'  => sprintf(
+                    '<p class="comment-notes">%s</p>',
+                    sprintf(
+                        '<span id="email-notes">%s</span>',
+                        __( 'Your email address will not be published.', 'ucef-woo' )
+                    )
+                ),
+                'comment_field'         => sprintf(
+                    '<div class="form-group">%s %s</div>',
+                    '<textarea id="comment" name="comment" class="form-control" rows="4" required="required"></textarea>',
+                    sprintf(
+                        '<small class="text-danger d-none">%s</small>',
+                        __( 'Please Write Something', 'ucef-woo')
+                    )
+                ),
+                'fields'                => apply_filters( 'comment_form_default_fields', $fields )
 
-    <?php
-        $fields = array(
-            'author' => sprintf(
-                '<div class="form-group">%s %s %s</div>',
-                sprintf(
-                    '<label for="author">%s%s</label>',
-                    __( 'Name', 'ucef-woo' ),
-                    ( ' <span class="required">*</span>' )
-                ),
-                sprintf(
-                    '<input id="author" name="author" type="text" class="form-control" value="%s" required="required" />',
-                    esc_attr( $commenter['comment_author'] )
-                ),
-                sprintf(
-                    '<small class="text-danger d-none">%s</small>',
-                    __( 'Please Enter Your Name', 'ucef-woo')
-                )
-            ),
-            'email'  => sprintf(
-                '<div class="form-group">%s %s %s</div>',
-                sprintf(
-                    '<label for="email">%s%s</label>',
-                    __( 'Email', 'ucef-woo' ),
-                    ( ' <span class="required">*</span>' )
-                ),
-                sprintf(
-                    '<input id="email" name="email" type="email" class="form-control" value="%s" aria-describedby="email-notes" required="required" />',
-                    esc_attr( $commenter['comment_author_email'] ),
-                ),
-                sprintf(
-                    '<small class="text-danger d-none">%s</small>',
-                    __( 'Please Enter Your Email', 'ucef-woo')
-                )
-            ),
-        );
-        $args = array(
-            'class_submit'  => 'btn btn-block btn-success',
-            'label_submit'  => __( 'Submit Comment', 'ucef-woo' ),
-            'comment_notes_before' => sprintf(
-                '<p class="comment-notes">%s</p>',
-                sprintf(
-                    '<span id="email-notes">%s</span>',
-                    __( 'Your email address will not be published.', 'ucef-woo' )
-                )
-            ),
-            'comment_field' => sprintf(
-                '<div class="form-group">%s %s %s</div>',
-                sprintf(
-                    '<label for="comment">%s</label>',
-                    _x( 'Comment', 'noun', 'ucef-woo' )
-                ),
-                '<textarea id="comment" name="comment" class="form-control" rows="4" required="required"></textarea>',
-                sprintf(
-                    '<small class="text-danger d-none">%s</small>',
-                    __( 'Please Write Something', 'ucef-woo')
-                )
-            ),
-            'fields'        => apply_filters( 'comment_form_default_fields', $fields )
+            ); 
+            comment_form( $args );
+        ?>
 
-        ); 
-        comment_form( $args );
-    ?>
+    </div>
 
 </div><!--.comments-area -->
