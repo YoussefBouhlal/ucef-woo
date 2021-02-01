@@ -200,7 +200,12 @@ final class UCEFWOO_theme_class {
 		));
         
 		// Declare WooCommerce support.
-		add_theme_support( 'woocommerce' );
+		add_theme_support( 'woocommerce', array(
+            'product_grid'          => array(
+                'default_rows'    => 2,
+                'default_columns' => 4,
+            ),
+        ));
 		add_theme_support( 'wc-product-gallery-zoom' );
 		add_theme_support( 'wc-product-gallery-lightbox' );
         add_theme_support( 'wc-product-gallery-slider' );
