@@ -6,7 +6,9 @@ class Comments
         this.author     = document.querySelector( '#author' );
         this.email      = document.querySelector( '#email' );
 
-        this.events();
+        if ( this.form ) {
+            this.events();
+        }
     }
 
     events(){

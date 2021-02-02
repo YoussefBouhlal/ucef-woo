@@ -1,0 +1,28 @@
+/* coupon input */
+.woocommerce-cart table.cart td.actions .coupon .input-text {
+    @mixin atMedium {
+        width: auto;
+    }
+}
+
+.woocommerce-cart table.cart td.product-name a {
+    color: #212529;
+}
+
+.woocommerce a.button.alt,
+.woocommerce button.button.alt {
+    background-color: #28A745;
+
+    &:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+}
+
+.woocommerce a.remove {
+    color: #DC3545 !important;
+
+    &:hover {
+        background-color: #DC3545;
+    }
+}

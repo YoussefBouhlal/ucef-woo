@@ -21,3 +21,6 @@
 @import './component/_blog-page';
 @import './component/_footer';
 @import './component/_comments';
+@import './component/_cart-page';
+@import './component/_checkout-page';
+@import './component/_account-page';

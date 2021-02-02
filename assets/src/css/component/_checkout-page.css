@@ -1,0 +1,24 @@
+.woocommerce .col2-set .col-1,
+.woocommerce .col2-set .col-2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+
+    @mixin atMedium {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+.woocommerce form .form-row {
+    display: block;
+}
+.woocommerce-checkout #customer_details{
+    margin-bottom: 20px;
+}
+.woocommerce table.shop_table{
+    border-collapse: collapse;
+}
+.woocommerce table.shop_table thead{
+    background-color: #DC3545;
+    color: #fff;
+}
