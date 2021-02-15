@@ -5,87 +5,57 @@
  * @package Ucef Woo
  */
 
+ class Archive_Product
+ {
+    /**
+     * register default hooks
+     */
+    public function __construct() {
 
-if ( ! class_exists( 'Archive_Product' ) ) {
+        // Remove elements.
+        remove_action( 'woocommerce_before_shop_loop_item','woocommerce_template_loop_product_link_open', 10 );
+        remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10 );
+        remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
+        remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
+        remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5 );
+        remove_action( 'woocommerce_after_shop_loop_item','woocommerce_template_loop_product_link_close', 5 );
+        remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
+        remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
 
-	class Archive_Product
-    {
-        /**
-         * register default hooks
-         */
-        public function __construct() {
+        //Add new elements.
+        add_action( 'woocommerce_before_shop_loop_item', array( $this, 'open_shop_loop_item_inner_div') );
+        add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'loop_product_thumbnail' ), 10 );
 
-            // check if this is the shop page
-            add_action( 'wp', array( $this, 'is_shop_page' ) );
-            
-            // open the container and row befor the content
-            add_action( 'woocommerce_before_main_content', array( $this, 'open_container_row'), 5 );
-            
-            // open col for the main content
-            add_action( 'woocommerce_before_main_content', array( $this, 'open_shop_tags'), 9 );
-
-            // close the container for the main content
-            add_action( 'woocommerce_after_main_content', array( $this, 'close_shop_tags'), 4 );
-
-            // close the container and row after the content
-            add_action( 'woocommerce_after_main_content', array( $this, 'close_container_row'), 5 );
-
-            // remove sidebar hook from bottom
-            remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar' );
-
-        }
-
-        /**
-         * apply hooks for shop page only
-         */
-        function is_shop_page() {
-
-            if ( is_shop() ) {
-
-                // open container for the sidebar
-                add_action( 'woocommerce_before_main_content', array( $this, 'open_sidebar_tags'), 6 );
-                
-                // add side bar to the top
-                add_action( 'woocommerce_before_main_content', 'woocommerce_get_sidebar', 7 );
-                
-                // close container for the sidebar
-                add_action( 'woocommerce_before_main_content', array( $this, 'close_sidebar_tags'), 8 );
-            }
-        }
-
-        /**
-         * open container and row
-         */
-        function open_container_row() {
-            echo '<div class="container shop-content"><div class="row">';
-        }
-
-        function open_sidebar_tags() {
-            echo '<div class="sidebar-shop col-lg-3 d-none d-lg-block">';
-        }
+        add_action( 'woocommerce_after_shop_loop_item', array( $this, 'close_shop_loop_item_inner_div' ) );
         
-        function close_sidebar_tags(){
-            echo '</div>';
-        }
-        
-        /**
-         * open col for the main content
-         */
-        function open_shop_tags() {
-            echo '<div class="col-12 col-lg-9">';
-        }
-        
-        function close_shop_tags() {
-            echo '</div>';
-        }
-        
-        function close_container_row() {
-            echo '</div></div>';
-        }
-
     }
-}
 
-new Archive_Product();
+    /**
+     * Add an opening div "product-inner" around product entries.
+     */
+    public function open_shop_loop_item_inner_div() {
+        ?>
+            <div class="product-inner">
+        <?php
+    }
 
+    /**
+     * Returns product thumbnail from template parts
+     */
+    public function loop_product_thumbnail() {
 
+        get_template_part( 'template-parts/woocommerce/thumbnail/image', 'swap' );
+    }
+
+    /**
+     * Close the "product-inner" div around product entries.
+     */
+    public function close_shop_loop_item_inner_div() {
+        ?>
+            </div><!-- .product-inner -->
+        <?php
+    }
+
+ }
+
+ new Archive_Product();
