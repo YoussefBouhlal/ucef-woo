@@ -85,7 +85,8 @@ final class UCEFWOO_theme_class {
         define( 'UCEF_WOO_INC_DIR_URI', UCEF_WOO_THEME_URI . '/inc/' );
         
         // Check if plugins are active
-        define( 'OCEANWP_WOOCOMMERCE_ACTIVE', class_exists( 'WooCommerce' ) );
+        define( 'UCEF_WOO_WOOCOMMERCE_ACTIVE', class_exists( 'WooCommerce' ) );
+        define( 'UCEF_WOO_YITH_WISHLIST_ACTIVE', class_exists( 'YITH_WCWL' ) );
     }
     
     /**
@@ -100,7 +101,7 @@ final class UCEFWOO_theme_class {
         require_once $dir . 'walker/class-wp-comment-walker.php';
 
         // WooCommerce
-        if ( OCEANWP_WOOCOMMERCE_ACTIVE ) {
+        if ( UCEF_WOO_WOOCOMMERCE_ACTIVE ) {
             require_once $dir . 'woocommerce/woocommerce-config.php';
         }
     }

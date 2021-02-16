@@ -5,4 +5,13 @@
  * @package Ucef Woo
  */
 
-echo 'wishlist';
+
+if ( UCEF_WOO_YITH_WISHLIST_ACTIVE ) {
+
+    ?>
+        <div class="woo-entry-button">
+            <?php echo do_shortcode( '[yith_wcwl_add_to_wishlist]' ); ?>
+        </div>
+    <?php
+
+}
