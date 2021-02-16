@@ -25,6 +25,8 @@
         //Add new elements.
         add_action( 'woocommerce_before_shop_loop_item', array( $this, 'open_shop_loop_item_inner_div') );
         add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'loop_product_thumbnail' ), 10 );
+        add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'loop_product_sale_flash' ), 10 );
+        add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'loop_product_panel_buttons' ), 10 );
 
         add_action( 'woocommerce_after_shop_loop_item', array( $this, 'close_shop_loop_item_inner_div' ) );
         
@@ -45,6 +47,21 @@
     public function loop_product_thumbnail() {
 
         get_template_part( 'template-parts/woocommerce/thumbnail/image', 'swap' );
+    }
+
+    public function loop_product_sale_flash() {
+
+        get_template_part( 'template-parts/woocommerce/flash/sale', 'percentage' );
+    }
+    
+    public function loop_product_panel_buttons() {
+        ?>
+            <div class="woo-entry-panel-buttons">
+                <?php
+                    get_template_part( 'template-parts/woocommerce/buttons/wishlist', 'button' );
+                ?>
+            </div><!-- .woo-entry-panel-buttons -->
+        <?php
     }
 
     /**
