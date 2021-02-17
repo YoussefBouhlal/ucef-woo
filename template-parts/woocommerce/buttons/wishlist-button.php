@@ -9,7 +9,7 @@
 if ( UCEF_WOO_YITH_WISHLIST_ACTIVE ) {
 
     ?>
-        <div class="woo-entry-button">
+        <div class="archive-product__button">
             <?php echo do_shortcode( '[yith_wcwl_add_to_wishlist]' ); ?>
         </div>
     <?php

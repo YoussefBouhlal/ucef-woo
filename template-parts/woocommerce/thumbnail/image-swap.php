@@ -39,19 +39,19 @@ if ( ! empty( $attachment_ids ) ) {
 
 // Image args.
 $first_img = array(
-	'class' => 'woo-entry-image-main',
+	'class' => 'archive-product-image-main',
 	'alt'   => get_the_title(),
 );
 // Second image args.
 $second_img = array(
-	'class' => 'woo-entry-image-secondary',
+	'class' => 'archive-product-image-secondary',
 	'alt'   => get_the_title(),
 );
 
 // Return thumbnail
 if ( $secondary_img_id ) : ?>
 
-    <div class="woo-entry-image woo-entry-image-swap">
+    <div class="archive-product-image-swap">
         <?php
             ucef_woo_img_link_open();
 
@@ -62,11 +62,11 @@ if ( $secondary_img_id ) : ?>
 
             ucef_woo_img_link_close();
         ?>
-    </div><!-- .woo-entry-image -->
+    </div><!-- .archive-product-image-swap -->
 
 <?php else : ?>
 
-	<div class="woo-entry-image">
+	<div class="archive-product-image">
 		<?php
 			ucef_woo_img_link_open();
 
@@ -75,6 +75,6 @@ if ( $secondary_img_id ) : ?>
 
             ucef_woo_img_link_close();
 		?>
-	</div><!-- .woo-entry-image -->
+	</div><!-- .archive-product-image -->
 
 <?php endif; ?>

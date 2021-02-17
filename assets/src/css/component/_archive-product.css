@@ -1,0 +1,52 @@
+/* 
+    Archive Product
+ */
+.woocommerce ul.products li.product .archive-product {
+
+  &-inner {
+    position: relative;
+  }
+  &-image-swap {
+    position: relative;
+    overflow: hidden;
+
+    & img {
+      transition: opacity 0.25s ease-in-out;
+      width: 100%;
+      overflow: hidden;
+    }
+    & .archive-product-image-main {
+      position: relative;
+      margin-bottom: 0 !important;
+      z-index: 2;
+    }
+    & .archive-product-image-secondary {
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      height: 100%;
+      z-index: 1;
+    }
+    &:hover {
+      & .archive-product-image-main {
+        opacity: 0;
+      }
+    }
+  }
+  &-image {
+    & img {
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: 0 !important;
+    }
+  }
+  &-sale-flash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    border: 1px solid red;
+  }
+
+}

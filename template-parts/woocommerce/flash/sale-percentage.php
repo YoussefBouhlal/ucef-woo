@@ -45,8 +45,8 @@ if ( $product->is_type( 'simple' ) ) {
 
 if ( isset( $max_percentage ) ) {
     ?>
-        <div class="woo-entry-sale-flash">
+        <div class="archive-product-sale-flash">
             <span><?php echo '-' . round($max_percentage) . '%' ?></span>
-        </div><!-- .woo-entry-sale-flash -->
+        </div><!-- .archive-product__sale-flash -->
     <?php
 }
