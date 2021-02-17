@@ -61,6 +61,8 @@ if ( $secondary_img_id ) : ?>
             echo wp_get_attachment_image( $secondary_img_id, 'woocommerce_thumbnail', '', $second_img );
 
             ucef_woo_img_link_close();
+
+			do_action( 'ucef_woo_after_archive_product_image' );
         ?>
     </div><!-- .archive-product-image-swap -->
 
@@ -74,6 +76,8 @@ if ( $secondary_img_id ) : ?>
             echo wp_get_attachment_image( $attachment, 'woocommerce_thumbnail', '', $first_img );
 
             ucef_woo_img_link_close();
+
+			do_action( 'ucef_woo_after_archive_product_image' );
 		?>
 	</div><!-- .archive-product-image -->
 

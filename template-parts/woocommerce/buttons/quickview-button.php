@@ -6,7 +6,7 @@
  */
 
 ?>
-    <div class="archive-product__button">
+    <div class="archive-product-button">
         <a href="#"><?php ucef_woo_svg_inline( 'view' ); ?></a>
     </div>
 <?php

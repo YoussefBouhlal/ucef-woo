@@ -3,50 +3,116 @@
  */
 .woocommerce ul.products li.product .archive-product {
 
-  &-inner {
-    position: relative;
-  }
-  &-image-swap {
-    position: relative;
-    overflow: hidden;
+	&-inner {
+		position: relative;
+	}
 
-    & img {
-      transition: opacity 0.25s ease-in-out;
-      width: 100%;
-      overflow: hidden;
-    }
-    & .archive-product-image-main {
-      position: relative;
-      margin-bottom: 0 !important;
-      z-index: 2;
-    }
-    & .archive-product-image-secondary {
-      position: absolute;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      height: 100%;
-      z-index: 1;
-    }
-    &:hover {
-      & .archive-product-image-main {
-        opacity: 0;
-      }
-    }
-  }
-  &-image {
-    & img {
-      width: 100%;
-      overflow: hidden;
-      margin-bottom: 0 !important;
-    }
-  }
-  &-sale-flash {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    border: 1px solid red;
-  }
+	&-image-swap {
+		position: relative;
+
+		& img {
+			width: 100%;
+			overflow: hidden;
+			transition: opacity 0.25s ease-in-out;
+		}
+		& .archive-product-image-main {
+			position: relative;
+			margin-bottom: 0 !important;
+			z-index: 2;
+		}
+		& .archive-product-image-secondary {
+			position: absolute;
+			top: 0;
+			left: 0;
+			overflow: hidden;
+			z-index: 1;
+		}
+		&:hover {
+			& .archive-product-image-main {
+				opacity: 0;
+			}
+		}
+	}
+
+	&-image {
+		position: relative;
+
+		& img {
+			width: 100%;
+			overflow: hidden;
+			margin-bottom: 0 !important;
+		}
+	}
+
+	&-sale-flash {
+		position: absolute;
+		width: 50px;
+		top: 25px;
+		left: 0;
+		z-index: 10;
+		color: #fff;
+		background-color: #000;
+		font-weight: 700;
+		text-align: center;
+		padding: 3px 0;
+		box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+		border-radius: 0 5px 5px 0;
+	}
+
+	&-panel-buttons {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		z-index: 20;
+		width: 100%;
+		transform: translateY(50%);
+	}
+
+	&-button {
+		background-color: #fff;
+		box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+		border-radius: 50%;
+		overflow: hidden;
+		margin: 0 5px;
+
+		& a {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 30px;
+			width: 30px;
+			padding: 0;
+			margin: 0;
+			background-color: transparent;
+		}
+
+		& .yith-wcwl-add-to-wishlist {
+			margin: 0;
+
+			& .yith-wcwl-wishlistaddedbrowse,
+			& .yith-wcwl-wishlistexistsbrowse {
+
+				& .feedback {
+					display: none;
+				}
+
+			}
+
+			& .yith-wcwl-add-button a.add_to_wishlist span,
+			& a .yith-tooltip-label {
+				display: none;
+			}
+
+		}
+
+	}
+
+	&-rating {
+		margin-top: 22px;
+		height: 14px;
+	}
 
 }

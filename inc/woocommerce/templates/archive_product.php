@@ -26,8 +26,8 @@ class Archive_Product
         //Add Actions
         add_action( 'woocommerce_before_shop_loop_item', array( $this, 'open_shop_loop_item_inner_div') );
         add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'loop_product_thumbnail' ), 10 );
-        add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'loop_product_sale_flash' ), 10 );
-        add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'loop_product_panel_buttons' ), 10 );
+        add_action( 'ucef_woo_after_archive_product_image', array( $this, 'loop_product_sale_flash' ), 10 );
+        add_action( 'ucef_woo_after_archive_product_image', array( $this, 'loop_product_panel_buttons' ), 10 );
         add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'loop_product_rating' ), 10 );
         add_action( 'woocommerce_shop_loop_item_title', array( $this, 'loop_product_title' ), 10 );
         add_action( 'woocommerce_after_shop_loop_item_title', array( $this, 'loop_product_price' ), 10 );
@@ -68,7 +68,7 @@ class Archive_Product
      */
     public function loop_product_panel_buttons() {
         ?>
-            <div class="archive-product__panel-buttons">
+            <div class="archive-product-panel-buttons">
                 <?php
                     get_template_part( 'template-parts/woocommerce/buttons/wishlist', 'button' );
                     get_template_part( 'template-parts/woocommerce/buttons/addtocart', 'button' );
@@ -83,7 +83,7 @@ class Archive_Product
      */
     public function loop_product_rating() {
         ?>
-            <div class="archive-product__rating">
+            <div class="archive-product-rating">
                 <?php woocommerce_template_loop_rating(); ?>
             </div><!-- .archive-product__rating -->
         <?php
