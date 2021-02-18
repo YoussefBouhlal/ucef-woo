@@ -271,10 +271,13 @@ final class UCEFWOO_theme_class {
      */
     public static function enqueue_scripts() {
 
+        // Get localized array.
+		$localize_array = self::localize_array();
+
         if( strstr( $_SERVER['SERVER_NAME'], 'test' ) ) {
 
             // Enqueue styles & scripts in development mode
-            wp_enqueue_script( 'main-js', 'http://localhost:3000/bundled.js', ['jquery'], '1.0', true );
+            wp_enqueue_script( 'ucef-woo-main', 'http://localhost:3000/bundled.js', ['jquery'], '1.0', true );
 
         }else {
 
@@ -296,6 +299,9 @@ final class UCEFWOO_theme_class {
             wp_enqueue_script( 'comment-reply' );
         }
 
+        // Localize array
+        wp_localize_script( 'ucef-woo-main', 'ucefwooLocalize', $localize_array );
+
     }
 
     public static function custom_excerpt_length() {
@@ -309,6 +315,15 @@ final class UCEFWOO_theme_class {
         $fields['comment'] = $comment_field;
 
         return $fields;
+    }
+
+    public static function localize_array() {
+
+        $array  = array(
+            'isRTL'     => is_rtl(),
+        );
+
+        return apply_filters( 'ucef_woo_localize_array', $array );
     }
 
 }

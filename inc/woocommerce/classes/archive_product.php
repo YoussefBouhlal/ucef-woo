@@ -141,8 +141,9 @@ class Archive_Product
 			ob_start();
 			ucef_woo_svg_inline( 'cart-product' );
 			$icon   = ob_get_clean();
+			$product_ID	= $product->get_id();
 
-			$html   = "<a href=\"#\" >$icon</a>";
+			$html   = "<a href=\"#\" id=\"product_id_$product_ID\" class=\"ucef-woo-quick-view\" data-product_id=\"$product_ID\">$icon</a>";
 
 			return $html;
 

@@ -14,7 +14,7 @@ class Ucef_Woo_WooCommerce_Config {
 
     public function __construct() {
         
-        $dir = UCEF_WOO_INC_DIR . '/woocommerce/templates';
+        $dir = UCEF_WOO_INC_DIR . '/woocommerce/classes';
 
         if ( UCEF_WOO_YITH_WISHLIST_ACTIVE ) {
             // Require if Yith Wishlist Plugin Activated
@@ -26,6 +26,7 @@ class Ucef_Woo_WooCommerce_Config {
         require_once $dir . '/checkout_page.php';
         require_once $dir . '/cart_page.php';
         require_once $dir . '/product_cart.php';
+        require_once $dir . '/quick_view.php';
     }
 
 }

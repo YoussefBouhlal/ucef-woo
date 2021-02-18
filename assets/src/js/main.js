@@ -17,5 +17,6 @@ import 'bootstrap';
  * Import JS Files
  */
 import Comments from './components/Comments';
+import QuickView from './components/QuickView';
 
 new Comments();
