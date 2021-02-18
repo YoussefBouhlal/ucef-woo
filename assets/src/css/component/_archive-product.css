@@ -99,6 +99,24 @@
 					display: none;
 				}
 
+				& a {
+					color: #000;
+				}
+
+			}
+
+			& .yith-wcwl-add-button a.add_to_wishlist i {
+				margin: 0;
+				color: #000;
+			}
+			
+			& .yith-wcwl-add-button a.delete_item {
+				font-size: 0;
+				 & i {
+					font-size: 16px;
+					margin: 0;
+					color: #000;
+				 }
 			}
 
 			& .yith-wcwl-add-button a.add_to_wishlist span,
@@ -113,6 +131,39 @@
 	&-rating {
 		margin-top: 22px;
 		height: 14px;
+
+		& .star-rating {
+			color: #F9CA63;
+			border-color: red;
+
+			&::before {
+				color: #F9CA63;
+			}
+		}
+	}
+
+	&-title {
+		margin-top: 16px;
+
+		& a {
+			font-size: 18px;
+			font-weight: 500;
+			color: #000;
+		}
+	}
+
+	&-price {
+		margin-top: 8px;
+
+		& .price {
+			font-size: 16px;
+			font-weight: 500;
+			color: #FE6D73;
+
+			& del {
+				color: #000;
+			}
+		}
 	}
 
 }

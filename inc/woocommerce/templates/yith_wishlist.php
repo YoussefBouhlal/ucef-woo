@@ -21,7 +21,7 @@ class Yith_Wishlist
     */
     function filter_yith_wcwl_browse_wishlist_label( $var ) { 
 
-        return '<span class="yith-tooltip-label">'.$var.'</span>';
+        return '<span class="fa fa-heart"></span>';
 
     }
 

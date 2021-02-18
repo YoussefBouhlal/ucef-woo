@@ -7,7 +7,14 @@
 
  // Return dummy image if no featured image is defined.
 if ( ! has_post_thumbnail() ) {
-	ucef_woo_placeholder_img();
+	?>
+		<div class="archive-product-image">
+			<?php
+			ucef_woo_placeholder_img();
+			do_action( 'ucef_woo_after_archive_product_image' );
+			?>
+		</div>
+	<?php
 	return;
 }
 
