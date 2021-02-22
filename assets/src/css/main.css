@@ -2,10 +2,12 @@
 # Import from node_modules
 ----------------------------*/
 @import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
+@import '../../../node_modules/swiper/swiper-bundle.css';
 
 /*!--------------------------
 # Base
 ----------------------------*/
+@import './base/_variables';
 @import './base/_mixins';
 @import './base/_typography';
 
@@ -26,3 +28,4 @@
 @import './component/_account-page';
 @import './component/_mini-cart';
 @import './component/_archive-product';
+@import './component/_quick-view';

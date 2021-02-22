@@ -1,56 +1,78 @@
 <?php
 /**
- * quick view image
+ * quick view image template
  *
  * @package Ucef Woo
  */
 
-global $post, $product, $woocommerce; ?>
 
-<div class="owp-qv-image flexslider images">
-	<ul class="owp-qv-slides slides">
+global $product; 
+
+// Return dummy image if no featured image is defined.
+if ( ! has_post_thumbnail() ) {
+	?>
+	<div class="swiper-container quick-view-swiper">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<img src="<?php echo wc_placeholder_img_src(); ?>" alt="<?php _e( 'Placeholder', 'ucef-woo'); ?>">
+			</div>
+		</div>
+	</div>
+	<?php
+	return;
+}
+?>
+
+<div class="swiper-container quick-view-swiper">
+	<div class="swiper-wrapper">
 		<?php
-		if ( has_post_thumbnail() ) {
-			$attachment_ids = $product->get_gallery_image_ids();
-			$props          = wc_get_product_attachment_props( get_post_thumbnail_id(), $post );
-			$image          = get_the_post_thumbnail(
-				$post->ID,
-				'shop_single',
-				array(
-					'title' => $props['title'],
-					'alt'   => $props['alt'],
-				)
+
+			// First Image
+			$attachment		= $product->get_image_id();
+			$props          = wc_get_product_attachment_props( $attachment, $product );
+			$first_img		= array(
+				'title'	=> $props['title'],
+				'alt'	=> $props['alt']
 			);
 
-			echo sprintf(
-				'<li class="%s">%s</li>',
-				'woocommerce-product-gallery__image',
-				$image // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			);
+			?>
+				<div class="swiper-slide">
+					<?php echo wp_get_attachment_image( $attachment, 'woocommerce_single', '', $first_img ); ?>
+				</div>
+			<?php
+
+			// Gallery Images
+			$attachment_ids = $product->get_gallery_image_ids();
 
 			if ( $attachment_ids ) {
-				$loop = 0;
 
 				foreach ( $attachment_ids as $attachment_id ) {
 
-					$props = wc_get_product_attachment_props( $attachment_id, $post );
+					$props				= wc_get_product_attachment_props( $attachment_id, $product );
+					$attachment_props	= array(
+						'title'	=> $props['title'],
+						'alt'	=> $props['alt']
+					);
 
 					if ( ! $props['url'] ) {
 						continue;
 					}
 
-					echo sprintf(
-						'<li class="%s">%s</li>',
-						'woocommerce-product-gallery__image',
-						wp_get_attachment_image( $attachment_id, 'shop_single', 0, $props )
-					);
+					?>
+						<div class="swiper-slide">
+							<?php echo wp_get_attachment_image( $attachment_id, 'woocommerce_single', '', $attachment_props ); ?>
+						</div>
+					<?php
 
-					$loop++;
 				}
 			}
-		} else {
-			echo sprintf( '<li><img src="%s" alt="%s" /></li>', wc_placeholder_img_src(), __( 'Placeholder', 'oceanwp' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		}
 		?>
-	</ul>
+	</div>
+
+	<?php if ( $attachment_ids ):?>
+		<div class="swiper-pagination"></div>
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-button-next"></div>
+	<?php endif; ?>
+	
 </div>

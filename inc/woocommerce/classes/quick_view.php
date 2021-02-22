@@ -11,29 +11,37 @@ class Quick_View
      * register hooks
      */
     public function __construct() {
-        
-        add_action( 'wp_ajax_ucef-woo_product_quick_view', array( $this, 'product_quick_view_ajax' ) );
-        add_action( 'wp_ajax_nopriv_ucef-woo_product_quick_view', array( $this, 'product_quick_view_ajax' ) );
-        add_action( 'wp_footer', array( $this, 'add_quick_view_template_to_footer' ) );
 
+        add_action( 'wp_enqueue_scripts', array( $this, 'add_custom_scripts') );
+        add_action( 'wp_ajax_ucef_woo_product_quick_view', array( $this, 'product_quick_view_ajax' ) );
+        add_action( 'wp_ajax_nopriv_ucef_woo_product_quick_view', array( $this, 'product_quick_view_ajax' ) );
+        add_action( 'wp_footer', array( $this, 'add_quick_view_template_to_footer' ) );
 
         add_filter( 'ucef_woo_localize_array', array( $this, 'localize_array' ) );
 
     }
 
     /**
+     * Add Custom Woocommerce scripts
+     */
+    public static function add_custom_scripts() {
+        wp_enqueue_script( 'wc-add-to-cart-variation');
+    }
+
+    /**
      * Quick view ajax
      */
-    public function product_quick_view_ajax() {
+    public static function product_quick_view_ajax() {
 
         if ( ! isset( $_REQUEST['product_id'] ) ) {
+            echo 'no id';
             die();
         }
 
-        $product_ID = intval( $_REQUEST['product_id'] );
+        $product_id = intval( $_REQUEST['product_id'] );
 
         // wp_query for the product
-        wp( 'p=' . $product_ID . '&post_type=product' );
+        wp( 'p=' . $product_id . '&post_type=product' );
 
         ob_start();
         get_template_part( 'template-parts/woocommerce/quick-view/quick-view', 'content' );
@@ -55,7 +63,8 @@ class Quick_View
      * add to localize array
      */
     public function localize_array( $array ) {
-        $array['ajax_url']  = admin_url( 'admin-ajax.php' );
+        $array['ajax_url']      = admin_url( 'admin-ajax.php' );
+        $array['grouped_text']  = esc_attr__( 'View products', 'ucef-woo' );
 
         return $array;
     }

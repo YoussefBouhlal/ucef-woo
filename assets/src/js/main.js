@@ -18,5 +18,6 @@ import 'bootstrap';
  */
 import Comments from './components/Comments';
 import QuickView from './components/QuickView';
+import Swiper from './components/Swiper';
 
 new Comments();

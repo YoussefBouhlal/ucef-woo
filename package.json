@@ -1,42 +1,43 @@
 {
-		"name": "ucef-woo",
-		"version": "1.0.0",
-		"description": "ucef-woo theme packages",
-		"main": "webpack.config.js",
-		"scripts": {
-				"dev": "webpack-dev-server",
-				"build": "webpack --watch",
-				"buildunmini": "webpack"
-		},
-		"author": "Youssef Bouhlal",
-		"license": "MIT",
-		"private": true,
-		"dependencies": {
-				"bootstrap": "^4.5.3",
-				"popper.js": "^1.16.1",
-				"webpack-dev-server": "^3.11.1"
-		},
-		"devDependencies": {
-				"@babel/core": "^7.10.3",
-				"@babel/preset-env": "^7.10.3",
-				"@babel/preset-react": "^7.10.1",
-				"autoprefixer": "^9.8.2",
-				"babel-loader": "^8.1.0",
-				"clean-webpack-plugin": "^3.0.0",
-				"css-loader": "^3.6.0",
-				"cssnano": "^4.1.10",
-				"mini-css-extract-plugin": "^0.9.0",
-				"postcss-calc": "^7.0.5",
-				"postcss-color-function": "^4.1.0",
-				"postcss-hexrgba": "^2.0.1",
-				"postcss-import": "^12.0.1",
-				"postcss-loader": "^3.0.0",
-				"postcss-mixins": "^6.2.3",
-				"postcss-nested": "^4.2.1",
-				"postcss-simple-vars": "^5.0.2",
-				"style-loader": "^1.2.1",
-				"webpack": "^4.44.2",
-				"webpack-cli": "^3.3.12",
-				"webpack-manifest-plugin": "^2.2.0"
-		}
+	"name": "ucef-woo",
+	"version": "1.0.0",
+	"description": "ucef-woo theme packages",
+	"main": "webpack.config.js",
+	"scripts": {
+		"dev": "webpack-dev-server",
+		"build": "webpack --watch",
+		"buildunmini": "webpack"
+	},
+	"author": "Youssef Bouhlal",
+	"license": "MIT",
+	"private": true,
+	"dependencies": {
+		"bootstrap": "^4.5.3",
+		"popper.js": "^1.16.1",
+		"webpack-dev-server": "^3.11.1"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.10.3",
+		"@babel/preset-env": "^7.10.3",
+		"@babel/preset-react": "^7.10.1",
+		"autoprefixer": "^9.8.2",
+		"babel-loader": "^8.1.0",
+		"clean-webpack-plugin": "^3.0.0",
+		"css-loader": "^3.6.0",
+		"cssnano": "^4.1.10",
+		"mini-css-extract-plugin": "^0.9.0",
+		"postcss-calc": "^7.0.5",
+		"postcss-color-function": "^4.1.0",
+		"postcss-hexrgba": "^2.0.1",
+		"postcss-import": "^12.0.1",
+		"postcss-loader": "^3.0.0",
+		"postcss-mixins": "^6.2.3",
+		"postcss-nested": "^4.2.1",
+		"postcss-simple-vars": "^5.0.2",
+		"style-loader": "^1.2.1",
+		"swiper": "^6.4.15",
+		"webpack": "^4.44.2",
+		"webpack-cli": "^3.3.12",
+		"webpack-manifest-plugin": "^2.2.0"
+	}
 }

@@ -1,0 +1,138 @@
+#uw-qv-wrap {
+    display: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &,
+    & .uw-qv-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+    }
+
+    & .uw-qv-overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+    }
+
+    & .uw-qv-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        text-align: center;
+        padding: 30px;
+
+        &::before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+    }
+
+    & .uw-qv-content-wrap {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: left;
+        width: 98%;
+        z-index: 1045;
+        opacity: 0;
+        transform: translateY(-30px);
+        transition: transform .5s, opacity .3s;
+    }
+
+    &.is-visible .uw-qv-content-wrap {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    & .uw-qv-content-inner {
+        position: relative;
+        background-color: #fff;
+        max-width: 875px;
+        margin: 0 auto;
+        z-index: 1000;
+        box-shadow: 3px 3px 20px 0 rgba(0, 0, 0, 0.15);
+
+        & .uw-qv-close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: #333;
+            opacity: .5;
+            font-weight: 300;
+            font-size: 40px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            text-decoration: none;
+            z-index: 1001;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        & .product {
+            margin-bottom: 30px;
+        }
+    }
+
+    & .summary {
+        padding: 30px;
+        margin: 0;
+
+        & .star-rating {
+			color: #F9CA63;
+			border-color: red;
+
+			&::before {
+				color: #F9CA63;
+			}
+		}
+
+        & .price {
+			font-size: 16px;
+			font-weight: 500;
+			color: #FE6D73;
+
+			& del {
+				color: #000;
+			}
+		}
+
+        & .quantity {
+            
+            & input {
+                padding: 3px 2px;
+            }
+        }
+
+        & a.woocommerce-review-link,
+        & .woocommerce-variation-description {
+            display: none;
+        }
+
+    }
+
+    @mixin atMedium {
+
+        & .product-image,
+        & .summary {
+            width: 50%;
+        }
+
+        & .product {
+            display: flex;
+        }
+
+    }
+
+}
