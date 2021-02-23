@@ -1,0 +1,14 @@
+.ucef-woo-onsale {
+    position: absolute;
+    width: 50px;
+    top: 25px;
+    left: 0;
+    z-index: 10;
+    color: #fff;
+    background-color: #000;
+    font-weight: 700;
+    text-align: center;
+    padding: 3px 0;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 0 5px 5px 0;
+}

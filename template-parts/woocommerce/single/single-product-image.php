@@ -1,21 +1,19 @@
 <?php
 /**
- * quick view image template
+ * single product image template
  *
  * @package Ucef Woo
  */
 
 
-global $product; 
-
-do_action( 'ucef_woo_befor_quick_view_image' );
+global $product;
 
 // Return dummy image if no featured image is defined.
 if ( ! has_post_thumbnail() ) {
 	?>
-	<div class="uw-qv-image flexslider images">
-		<div class="uw-qv-slides slides">
-			<div class="woocommerce-product-gallery__image">
+	<div class="swiper-container single-product-swiper">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
 				<img src="<?php echo wc_placeholder_img_src(); ?>" alt="<?php _e( 'Placeholder', 'ucef-woo'); ?>">
 			</div>
 		</div>
@@ -25,8 +23,8 @@ if ( ! has_post_thumbnail() ) {
 }
 ?>
 
-<div class="uw-qv-image flexslider images">
-	<ul class="uw-qv-slides slides">
+<div class="swiper-container single-product-swiper">
+	<div class="swiper-wrapper">
 		<?php
 
 			// First Image
@@ -38,9 +36,9 @@ if ( ! has_post_thumbnail() ) {
 			);
 
 			?>
-				<li class="woocommerce-product-gallery__image">
+				<div class="swiper-slide">
 					<?php echo wp_get_attachment_image( $attachment, 'woocommerce_single', '', $first_img ); ?>
-				</li>
+				</div>
 			<?php
 
 			// Gallery Images
@@ -61,14 +59,20 @@ if ( ! has_post_thumbnail() ) {
 					}
 
 					?>
-						<li class="woocommerce-product-gallery__image">
+						<div class="swiper-slide">
 							<?php echo wp_get_attachment_image( $attachment_id, 'woocommerce_single', '', $attachment_props ); ?>
-						</li>
+						</div>
 					<?php
 
 				}
 			}
 		?>
-	</ul>
+	</div>
+
+	<?php if ( $attachment_ids ):?>
+		<div class="swiper-pagination"></div>
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-button-next"></div>
+	<?php endif; ?>
 	
 </div>

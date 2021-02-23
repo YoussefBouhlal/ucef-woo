@@ -302,6 +302,10 @@ final class UCEFWOO_theme_class {
         // Localize array
         wp_localize_script( 'ucef-woo-main', 'ucefwooLocalize', $localize_array );
 
+        // Load font awesome style.
+		wp_enqueue_style( 'font-awesome', UCEF_WOO_THEME_URI . '/assets/dist/fonts/fontawesome/css/all.min.css', false, '5.15.1' );
+
+
     }
 
     public static function custom_excerpt_length() {

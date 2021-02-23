@@ -25,8 +25,8 @@ class Ucef_Woo_WooCommerce_Config {
         require_once $dir . '/archive_product.php';
         require_once $dir . '/checkout_page.php';
         require_once $dir . '/cart_page.php';
-        require_once $dir . '/product_cart.php';
         require_once $dir . '/quick_view.php';
+        require_once $dir . '/single_product.php';
     }
 
 }

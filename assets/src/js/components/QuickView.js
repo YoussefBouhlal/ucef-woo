@@ -1,5 +1,3 @@
-import SwiperQv from "./Swiper";
-
 (function($){
 
     class QuickView
@@ -59,10 +57,14 @@ import SwiperQv from "./Swiper";
 
                         if ( var_form.length > 0 ) {
                             var_form.wc_variation_form();
-                            var_form.find( 'select' ).change();
+                            // var_form.find( 'select' ).change();
                         }
 
-                        new SwiperQv();
+                        let image_slider_wrap = qv_content.find( '.uw-qv-image' );
+
+                        if ( image_slider_wrap.find( 'li' ).length > 1 ) {
+                            image_slider_wrap.flexslider();
+                        }
 
                         // If grouped product
                         let grouped = qv_content.find( 'form.grouped_form' );

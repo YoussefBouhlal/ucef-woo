@@ -16,6 +16,7 @@ class Quick_View
         add_action( 'wp_ajax_ucef_woo_product_quick_view', array( $this, 'product_quick_view_ajax' ) );
         add_action( 'wp_ajax_nopriv_ucef_woo_product_quick_view', array( $this, 'product_quick_view_ajax' ) );
         add_action( 'wp_footer', array( $this, 'add_quick_view_template_to_footer' ) );
+        add_action( 'ucef_woo_befor_quick_view_image', array( $this, 'on_sale_flash') );
 
         add_filter( 'ucef_woo_localize_array', array( $this, 'localize_array' ) );
 
@@ -26,6 +27,7 @@ class Quick_View
      */
     public static function add_custom_scripts() {
         wp_enqueue_script( 'wc-add-to-cart-variation');
+        wp_enqueue_script( 'flexslider' );
     }
 
     /**
@@ -56,6 +58,15 @@ class Quick_View
     public function add_quick_view_template_to_footer() {
 
         get_template_part( 'template-parts/woocommerce/quick-view/quick-view', 'template' );
+
+    }
+
+    /**
+     * show onsale falsh
+     */
+    function on_sale_flash() {
+
+        get_template_part( 'template-parts/woocommerce/flash/sale', 'percentage' );
 
     }
 

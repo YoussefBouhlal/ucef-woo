@@ -1,15 +1,20 @@
 import Swiper from 'swiper/bundle';
 
-class SwiperQv
-{
-    constructor() {
+const swipers = {
 
-        this.events();
-    }
-
-    events() {
-
-        const swiper = new Swiper( '.swiper-container.quick-view-swiper', {
+    quickView(){
+        new Swiper( '.swiper-container.quick-view-swiper', {
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            }
+        });
+    },
+    singleProduct(){
+        new Swiper( '.swiper-container.single-product-swiper', {
             pagination: {
                 el: '.swiper-pagination',
             },
@@ -20,4 +25,5 @@ class SwiperQv
         });
     }
 }
-export default SwiperQv;
+
+export default swipers;

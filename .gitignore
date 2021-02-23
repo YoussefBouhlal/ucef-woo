@@ -62,6 +62,7 @@ yarn.lock
 # Compiled Files and Build Dirs #
 ##########
 /README.html
+/assets/dist/fonts
 
 # PhpStrom Project Files #
 .idea/

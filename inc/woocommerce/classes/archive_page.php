@@ -15,22 +15,13 @@ class Archive_Page
 
         // check if this is the shop page
         add_action( 'wp', array( $this, 'is_shop_page' ) );
-        
-        // open the container and row befor the content
-        add_action( 'woocommerce_before_main_content', array( $this, 'open_container_row'), 5 );
-        
-        // open col for the main content
-        add_action( 'woocommerce_before_main_content', array( $this, 'open_shop_tags'), 9 );
 
-        // close the container for the main content
-        add_action( 'woocommerce_after_main_content', array( $this, 'close_shop_tags'), 4 );
-
-        // close the container and row after the content
-        add_action( 'woocommerce_after_main_content', array( $this, 'close_container_row'), 5 );
+        // check if not single product page
+        add_action( 'wp', array( $this, 'is_not_product_page' ) );
 
         // remove sidebar hook from bottom
         remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar' );
-
+        
     }
 
     /**
@@ -48,6 +39,28 @@ class Archive_Page
             
             // close container for the sidebar
             add_action( 'woocommerce_before_main_content', array( $this, 'close_sidebar_tags'), 8 );
+        }
+    }
+    
+    /**
+     * apply hooks if not product page
+     */
+    function is_not_product_page() {
+
+        if ( ! is_product() ) {
+
+            // open the container and row befor the content
+            add_action( 'woocommerce_before_main_content', array( $this, 'open_container_row'), 5 );
+            
+            // open col for the main content
+            add_action( 'woocommerce_before_main_content', array( $this, 'open_shop_tags'), 9 );
+
+            // close the container for the main content
+            add_action( 'woocommerce_after_main_content', array( $this, 'close_shop_tags'), 4 );
+
+            // close the container and row after the content
+            add_action( 'woocommerce_after_main_content', array( $this, 'close_container_row'), 5 );
+
         }
     }
 
