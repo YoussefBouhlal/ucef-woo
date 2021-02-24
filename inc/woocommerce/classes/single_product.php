@@ -39,7 +39,6 @@ class Single_Product
             // filter the flexslider options
             add_filter( 'woocommerce_single_product_carousel_options', array( $this, 'ucef_woo_flexslider_options' ) );
 
-
         }
     }
 

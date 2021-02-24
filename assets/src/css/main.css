@@ -2,7 +2,6 @@
 # Import from node_modules
 ----------------------------*/
 @import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
-@import '../../../node_modules/swiper/swiper-bundle.css';
 
 /*!--------------------------
 # Base
@@ -30,3 +29,5 @@
 @import './component/_archive-product';
 @import './component/_quick-view';
 @import './component/_onsale';
+@import './component/_single-product';
+@import './component/_wishlist';

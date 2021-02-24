@@ -100,48 +100,6 @@
 			background-color: transparent;
 		}
 
-		& .yith-wcwl-add-to-wishlist {
-			margin: 0;
-
-			& .yith-wcwl-wishlistaddedbrowse,
-			& .yith-wcwl-wishlistexistsbrowse {
-
-				& .feedback {
-					display: none;
-				}
-
-				& a {
-					color: #000;
-				}
-
-			}
-
-			& .yith-wcwl-add-button a.add_to_wishlist i {
-				margin: 0;
-				color: #000;
-
-				&::before {
-					content: "\f004";
-					font-weight: normal;
-				}
-			}
-			
-			& .yith-wcwl-add-button a.delete_item {
-				font-size: 0;
-				 & i {
-					font-size: 16px;
-					margin: 0;
-					color: #000;
-				 }
-			}
-
-			& .yith-wcwl-add-button a.add_to_wishlist span,
-			& a .yith-tooltip-label {
-				display: none;
-			}
-
-		}
-
 	}
 
 	&-rating {

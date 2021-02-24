@@ -16,11 +16,8 @@ import 'bootstrap';
 /**
  * Import JS Files
  */
-import Swiper from './components/Swiper';
 import Comments from './components/Comments';
 import QuickView from './components/QuickView';
-import singleProduct from './components/SingleProduct';
+import QuantityButton from './components/QuantityButton';
 
-
-Swiper.singleProduct();
 new Comments();
