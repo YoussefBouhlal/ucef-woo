@@ -123,6 +123,18 @@
 				color: #000;
 			}
         }
+        
+        & .star-rating {
+			color: #F9CA63;
+			border-color: red;
+
+			&::before {
+				color: #F9CA63;
+			}
+		}
+        & .woocommerce-review-link {
+            color: #000;
+        }
 
         & .quantity {
             position: relative;
@@ -192,6 +204,150 @@
                     color: #ababab;
                     font-weight: 400;
                 }
+            }
+        }
+    }
+
+    & .woocommerce-tabs {
+        display: inline-block;
+        width: 100%;
+        padding: 30px 0;
+
+        & ul.tabs {
+            display: block;
+            position: relative;
+            width: 100%;
+            border-top: 1px solid;
+            border-bottom: 1px solid;
+            margin-bottom: 20px;
+            text-align: center;
+            border-color: #333;
+            padding: 0;
+
+            & li {
+                display: block;
+
+                & a {
+                    display: inline-block;
+                    color: #999;
+                    border-top: 2px solid transparent;
+                    border-bottom: 2px solid transparent;
+                    margin-top: -1px;
+                    margin-bottom: -1px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    font-size: 90%;
+                    padding: 10px;
+                }
+            }
+        }
+
+        & .panel {
+            margin: 1.5em 0 0;
+            & h2:first-child {
+                margin: 20px 0;
+                font-size: 18px;
+                font-weight: 400;
+            }
+        }
+
+        @mixin atMedium {
+            & ul.tabs {
+
+                & li {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    & #reviews {
+        
+        #comments {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: 0;
+            overflow: hidden;
+
+            & h2 {
+                & span {
+                    font-weight: 700;
+                }
+            }
+
+            & ol.commentlist {
+                width: 100%;
+                background: none;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                & li {
+                    & .meta {
+                        font-size: 0.75em;
+                    }
+                    & .comment_container {
+                        position: relative;
+                        border-bottom: 1px solid;
+                        margin-bottom: 15px;
+                        font-size: 90%;
+                        min-height: 60px;
+                        border-color: #eaeaea;
+                        & .comment-text {
+                            border: 0;
+                            padding: 0;
+                            & .star-rating {
+                                color: #F9CA63;
+                                border-color: red;
+                                &::before {
+                                    color: #F9CA63;
+			                    }
+                            }
+                            & p.meta {
+                                margin: 0 0 5px;
+                                font-size: 1em;
+                                line-height: 1;
+                                border: 0;
+                                padding: 0;
+                            }
+                        } 
+                        & img.avatar {
+                            border-radius: 50%;
+                        }
+                    }
+                    & .children {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+        #respond {
+            margin: 0;
+            border: 0;
+            padding: 0;
+
+            & .comment-form-rating {
+                & .stars a {
+                    color: #F9CA63;
+                }
+            }
+
+            & p.comment-form-author,
+            & p.comment-form-email {
+                width: 50%;
+                float: left;
+                padding: 0 5px;
+
+                & input {
+                    width: 100%;
+                    border: 1px solid #777;
+                    padding: 6px 10px;
+                }
+            }
+
+            & input#submit {
+                width: 100%;
             }
         }
     }

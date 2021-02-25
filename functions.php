@@ -62,7 +62,7 @@ final class UCEFWOO_theme_class {
         add_filter( 'excerpt_length', array( 'UCEFWOO_Theme_Class', 'custom_excerpt_length' ), 999 );
 
         // move comment field to bottom
-        add_filter( 'comment_form_fields', array( 'UCEFWOO_Theme_Class', 'move_comment_field_to_bottom' ) );
+        // add_filter( 'comment_form_fields', array( 'UCEFWOO_Theme_Class', 'move_comment_field_to_bottom' ) );
 
     }
 
