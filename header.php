@@ -34,15 +34,22 @@
                             <?php endif; ?>
                             <div class="cart position-relative pl-2 pr-1">
                                 <button type="button" id="ucef-woo-mini-cart" class="btn btn-link btn-outline-light p-0">
-                                    <span class="cart-icon">
-                                        <?php ucef_woo_svg_inline( 'cart' ); ?>
-                                    </span>
+                                    <i class="fa fa-shopping-cart text-dark"></i>
                                     <span class="cart-count items badge badge-pill badge-dark position-absolute"><?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?></span>
                                 </button>
                             </div>
+                            <?php if ( class_exists( 'YITH_WCWL' ) ): ?>
+                                <div class="wishlist position-relative pl-2 pr-1">
+                                    <button type="button" id="ucef-woo-wishlist" class="btn btn-link btn-outline-light p-0">
+                                        <i class="fa fa-heart text-dark"></i>
+                                        <span class="wishlist-count items badge badge-pill badge-dark position-absolute"><?php echo esc_html( yith_wcwl_count_all_products() ); ?></span>
+                                    </button>
+                                </div>
+                            <?php endif; ?>
                         <?php endif; ?>
+                        
                         <a class="ml-2" data-toggle="collapse" href="#searchForm" role="button" aria-expanded="false" aria-controls="searchForm">
-                            <?php ucef_woo_svg_inline( 'search' ); ?>
+                            <i class="fa fa-search text-dark"></i>
                         </a>
                     </div>
                 </div>

@@ -65,9 +65,9 @@ class Cart_Page
         // products count in cart icon
         ob_start();
         ?>
-        <span class="items badge badge-pill badge-dark position-absolute"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+        <span class="cart-count items badge badge-pill badge-dark position-absolute"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
         <?php
-        $fragments['span.items'] = ob_get_clean();
+        $fragments['span.cart-count'] = ob_get_clean();
 
         // mini cart in header
         ob_start();

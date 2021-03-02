@@ -15,6 +15,12 @@ class Yith_Wishlist
         // check if single product page
         add_action( 'wp', array( $this, 'is_product_page' ) );
 
+        // Update the count of products in wishlist in header
+        add_action( 'wp_ajax_ucef_woo_update_wishlist_count', array( $this, 'update_count' ) );
+        add_action( 'wp_ajax_nopriv_ucef_woo_update_wishlist_count', array( $this, 'update_count' ) );
+        // Add wishlist template to footer
+        add_action( 'wp_footer', array( $this, 'add_wishlist_template_to_footer' ) );
+
         add_filter( 'yith-wcwl-browse-wishlist-label', array( $this, 'filter_yith_wcwl_browse_wishlist_label' ), 10 );
 
     }
@@ -58,6 +64,23 @@ class Yith_Wishlist
     public function return_nothing( $show ) {
 
         return;
+    }
+
+    /**
+     * Update the count of products in wishlist in header
+     */
+    public function update_count() {
+        
+        echo esc_html( yith_wcwl_count_all_products() );
+
+        die();
+    }
+
+    /**
+     * Add wishlist template to footer
+     */
+    public function add_wishlist_template_to_footer() {
+        get_template_part( 'template-parts/woocommerce/wishlist/wishlist', 'template' );
     }
 
 }

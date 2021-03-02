@@ -72,3 +72,97 @@
     }
 
 }
+
+#uw-wl-wrap {
+    overflow: hidden;
+    display: none;
+
+    &,
+    & .uw-wl-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+    }
+
+    & .uw-wl-overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+    }
+
+    & .uw-wl-container {
+        position: absolute;
+        width: 300px;
+        height: 100%;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    & .uw-wl-content-wrap {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: left;
+        width: 300px;
+        height: 100%;
+        z-index: 1045;
+        opacity: 0;
+        transform: translateX(400px);
+        transition: transform .5s, opacity .3s;
+    }
+
+    &.is-visible .uw-wl-content-wrap {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    & .uw-wl-content-inner {
+        position: relative;
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        z-index: 1000;
+        box-shadow: 3px 3px 20px 0 rgba(0, 0, 0, 0.15);
+
+        & .uw-wl-header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            box-shadow: 0 0 10px 1px rgba(0,0,0,0.2);
+
+            & .uw-wl-close {
+                color: #333;
+                opacity: .5;
+                text-decoration: none;
+                z-index: 1001;
+                padding: 10px;
+
+                &:hover {
+                    opacity: 1;
+                }
+                &::before {
+                    content: "\f00d";
+                    font: normal normal 700 20px/1 'Font Awesome 5 free';
+                }
+            }
+        }
+
+        & #uw-wl-body {
+            display: block;
+            overflow-y: auto;
+            padding: 10px;
+            height: 100%;
+
+            &::after {
+                content: "";
+                display: block;
+                height: 200px;
+            }
+        }
+
+    }
+}
