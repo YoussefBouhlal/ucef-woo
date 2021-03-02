@@ -33,7 +33,7 @@
                                 <a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ); ?>" class="nav-link btn btn-outline-success btn-sm pt-0 pb-0"><?php esc_html_e( 'Login / Register', 'ucef-woo' ); ?></a>
                             <?php endif; ?>
                             <div class="cart position-relative pl-2 pr-1">
-                                <button type="button" class="btn btn-link btn-outline-light p-0" data-toggle="modal" data-target="#mini-cart">
+                                <button type="button" id="ucef-woo-mini-cart" class="btn btn-link btn-outline-light p-0">
                                     <span class="cart-icon">
                                         <?php ucef_woo_svg_inline( 'cart' ); ?>
                                     </span>

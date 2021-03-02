@@ -17,13 +17,11 @@ class Cart_Page
         remove_action( 'woocommerce_widget_shopping_cart_total', 'woocommerce_widget_shopping_cart_subtotal' );
 
         // Close mini-cart body and Open footer and Open p tag for subtotal
-        // add_action( 'woocommerce_widget_shopping_cart_before_buttons', array( $this, 'open_footer') );
+        add_action( 'woocommerce_widget_shopping_cart_before_buttons', array( $this, 'open_footer') );
         // add subtotal to mini-cart footer
-        // add_action( 'woocommerce_widget_shopping_cart_before_buttons', 'woocommerce_widget_shopping_cart_subtotal' );
+        add_action( 'woocommerce_widget_shopping_cart_before_buttons', 'woocommerce_widget_shopping_cart_subtotal' );
         // Close p tag for Subtotal
-        // add_action( 'woocommerce_widget_shopping_cart_before_buttons', array( $this, 'close_subtotal') );
-        // Close mini-cart footer
-        // add_action( 'woocommerce_widget_shopping_cart_after_buttons', array( $this, 'close_footer') );
+        add_action( 'woocommerce_widget_shopping_cart_before_buttons', array( $this, 'close_subtotal') );
         // Add mini-cart template to footer
         add_action( 'wp_footer', array( $this, 'add_mini_cart_template_to_footer' ) );
         
@@ -38,7 +36,7 @@ class Cart_Page
     function open_footer () {
         ?>
             </div>
-            <div class="modal-footer">
+            <div class="uw-mc-footer">
             <p class="woocommerce-mini-cart__total total">
         <?php
     }
@@ -49,15 +47,6 @@ class Cart_Page
     function close_subtotal () {
         ?>
             </p>
-        <?php
-    }
-    
-    /**
-     * Close mini-cart footer
-     */
-    function close_footer () {
-        ?>
-            </div>
         <?php
     }
 
@@ -83,20 +72,16 @@ class Cart_Page
         // mini cart in header
         ob_start();
         ?>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><?php esc_html_e( 'Cart', 'ucef-woo' ); ?></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        <div class="uw-mc-content-inner">
+            <div class="uw-mc-header">
+                <a href="#" class="uw-mc-close" aria-label="close quick view"></a>
             </div>
-            <div class="modal-body">
+            <div id="uw-mc-body">
                 <?php woocommerce_mini_cart(); ?>
             </div>
         </div>
-        <!-- <script>jQuery('#mini-cart').modal('show')</script> -->
         <?php
-        $fragments['div.modal-content'] = ob_get_clean();
+        $fragments['.uw-mc-content-inner'] = ob_get_clean();
         
         return $fragments;
     }

@@ -1,6 +1,6 @@
 #uw-mc-wrap {
     overflow: hidden;
-    overflow-y: auto;
+    display: none;
 
     &,
     & .uw-mc-overlay {
@@ -19,9 +19,9 @@
 
     & .uw-mc-container {
         position: absolute;
-        width: 100%;
+        width: 300px;
         height: 100%;
-        left: 0;
+        right: 0;
         top: 0;
         bottom: 0;
     }
@@ -34,14 +34,14 @@
         width: 300px;
         height: 100%;
         z-index: 1045;
-        opacity: 1;
-        transform: translateY(-30px);
+        opacity: 0;
+        transform: translateX(400px);
         transition: transform .5s, opacity .3s;
     }
 
     &.is-visible .uw-mc-content-wrap {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(0);
     }
 
     & .uw-mc-content-inner {
@@ -52,49 +52,41 @@
         margin: 0 auto;
         z-index: 1000;
         box-shadow: 3px 3px 20px 0 rgba(0, 0, 0, 0.15);
-        border: 3px solid red;
 
-        & .uw-mc-close {
-            position: absolute;
-            top: 0;
-            right: 0;
-            color: #333;
-            opacity: .5;
-            font-weight: 300;
-            font-size: 40px;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            text-align: center;
-            text-decoration: none;
-            z-index: 1001;
+        & .uw-mc-header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            box-shadow: 0 0 10px 1px rgba(0,0,0,0.2);
 
-            &:hover {
-                opacity: 1;
+            & .uw-mc-close {
+                color: #333;
+                opacity: .5;
+                text-decoration: none;
+                z-index: 1001;
+                padding: 10px;
+
+                &:hover {
+                    opacity: 1;
+                }
+                &::before {
+                    content: "\f00d";
+                    font: normal normal 700 20px/1 'Font Awesome 5 free';
+                }
             }
         }
-    }
-}
 
+        & #uw-mc-body {
+            display: block;
+            overflow-y: auto;
+            padding: 10px;
+            height: 100%;
 
-#mini-cartff {
-
-    & .modal-dialog {
-        margin: 0;
-        margin-left: auto;
-        margin-right: -15px;
-        min-height: 100%;
-        max-width: 300px;
-
-        @mixin atSmall {
-            max-width: 400px;
-        }
-
-        & .modal-content {
-            max-height: 100%;
-        }
-
-        & .modal-body {
+            &::after {
+                content: "";
+                display: block;
+                height: 200px;
+            }
 
             & .woocommerce-mini-cart-item {
                 position: relative;
@@ -112,11 +104,21 @@
                     height: 100%;
                     width: auto;
                 }
+
+                & .variation {
+                    display: none;
+                }
             }
         }
 
-        & .modal-footer {
-            display: block;
+        & .uw-mc-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 3px 3px 20px 0 rgba(0, 0, 0, 0.15);
 
             & .buttons {
                 display: flex;

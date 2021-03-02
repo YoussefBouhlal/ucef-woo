@@ -19,5 +19,6 @@ import 'bootstrap';
 import Comments from './components/Comments';
 import QuickView from './components/QuickView';
 import QuantityButton from './components/QuantityButton';
+import MiniCart from './components/MiniCart';
 
 new Comments();
