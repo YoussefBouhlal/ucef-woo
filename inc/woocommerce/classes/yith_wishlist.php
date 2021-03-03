@@ -11,13 +11,17 @@ class Yith_Wishlist
      * register default hooks
      */
     public function __construct() {
+
+        // remove wishlist title
+        remove_action( 'yith_wcwl_wishlist_before_wishlist_content', array( YITH_WCWL_Frontend::get_instance(), 'wishlist_header' ), 10 );
+        remove_action( 'yith_wcwl_wishlist_after_wishlist_content', array( YITH_WCWL_Frontend::get_instance(), 'wishlist_footer' ), 10 );
         
         // check if single product page
         add_action( 'wp', array( $this, 'is_product_page' ) );
 
-        // Update the count of products in wishlist in header
-        add_action( 'wp_ajax_ucef_woo_update_wishlist_count', array( $this, 'update_count' ) );
-        add_action( 'wp_ajax_nopriv_ucef_woo_update_wishlist_count', array( $this, 'update_count' ) );
+        // Update the wishlist with ajax
+        add_action( 'wp_ajax_ucef_woo_update_wishlist_count', array( $this, 'update_wishlist' ) );
+        add_action( 'wp_ajax_nopriv_ucef_woo_update_wishlist_count', array( $this, 'update_wishlist' ) );
         // Add wishlist template to footer
         add_action( 'wp_footer', array( $this, 'add_wishlist_template_to_footer' ) );
 
@@ -67,13 +71,16 @@ class Yith_Wishlist
     }
 
     /**
-     * Update the count of products in wishlist in header
+     * Update the wishlist with ajax
      */
-    public function update_count() {
-        
-        echo esc_html( yith_wcwl_count_all_products() );
+    public function update_wishlist() {
 
-        die();
+        wp_send_json(
+            array (
+                'count' => yith_wcwl_count_all_products(),
+                'wishlist'  => do_shortcode('[yith_wcwl_wishlist]')
+            )
+        );
     }
 
     /**

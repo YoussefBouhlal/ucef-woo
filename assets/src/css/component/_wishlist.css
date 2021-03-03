@@ -162,6 +162,56 @@
                 display: block;
                 height: 200px;
             }
+
+            & table {
+                border: none;
+
+                & thead {
+                    display: none;
+                }
+
+                & tbody {
+
+                    & tr {
+                        display: flex;
+                        flex-wrap: wrap;
+                        border-bottom: 1px solid rgba(0,0,0,0.2);
+                        margin-bottom: 15px;
+
+                        & td {
+                            border: none;
+                        }
+
+                        & .product-thumbnail {
+                            display: block;
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            height: 100%;
+                            width: 30%;
+                            padding: 0;
+
+                            & img {
+                                width: 100%;
+                                height: auto;
+                            }
+                        }
+
+                        & .product-remove {
+                            width: 100%;
+                        }
+
+                        & .product-name,
+                        & .product-price,
+                        & .product-stock-status,
+                        & .product-add-to-cart {
+                            width: 34%;
+                        }
+                    }
+                    
+                }
+            }
+
         }
 
     }
