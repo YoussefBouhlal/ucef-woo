@@ -13,33 +13,12 @@ class Archive_Page
      */
     public function __construct() {
 
-        // check if this is the shop page
-        add_action( 'wp', array( $this, 'is_shop_page' ) );
-
         // check if not single product page
         add_action( 'wp', array( $this, 'is_not_product_page' ) );
 
         // remove sidebar hook from bottom
         remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar' );
         
-    }
-
-    /**
-     * apply hooks for shop page only
-     */
-    function is_shop_page() {
-
-        if ( is_shop() ) {
-
-            // open container for the sidebar
-            add_action( 'woocommerce_before_main_content', array( $this, 'open_sidebar_tags'), 6 );
-            
-            // add side bar to the top
-            add_action( 'woocommerce_before_main_content', 'woocommerce_get_sidebar', 7 );
-            
-            // close container for the sidebar
-            add_action( 'woocommerce_before_main_content', array( $this, 'close_sidebar_tags'), 8 );
-        }
     }
     
     /**
@@ -52,6 +31,15 @@ class Archive_Page
             // open the container and row befor the content
             add_action( 'woocommerce_before_main_content', array( $this, 'open_container_row'), 5 );
             
+            // open container for the sidebar
+            add_action( 'woocommerce_before_main_content', array( $this, 'open_sidebar_tags'), 6 );
+
+            // add side bar to the top
+            add_action( 'woocommerce_before_main_content', 'woocommerce_get_sidebar', 7 );
+                        
+            // close container for the sidebar
+            add_action( 'woocommerce_before_main_content', array( $this, 'close_sidebar_tags'), 8 );
+
             // open col for the main content
             add_action( 'woocommerce_before_main_content', array( $this, 'open_shop_tags'), 9 );
 
@@ -65,7 +53,7 @@ class Archive_Page
     }
 
     /**
-     * open container and row
+     * open the container and row befor the content
      */
     function open_container_row() {
         ?>
@@ -73,12 +61,18 @@ class Archive_Page
         <?php
     }
 
+    /**
+     * open container for the sidebar
+     */
     function open_sidebar_tags() {
         ?>
             <div class="sidebar-shop col-lg-3 d-none d-lg-block">
         <?php
     }
     
+    /**
+     * close container for the sidebar
+     */
     function close_sidebar_tags(){
         ?>
             </div>
@@ -94,12 +88,18 @@ class Archive_Page
         <?php
     }
     
+    /**
+     * close the container for the main content
+     */
     function close_shop_tags() {
         ?>
             </div>
         <?php
     }
     
+    /**
+     * close the container and row after the content
+     */
     function close_container_row() {
         ?>
             </div></div>
@@ -107,7 +107,4 @@ class Archive_Page
     }
 
 }
-
 new Archive_Page();
-
-
