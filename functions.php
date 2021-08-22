@@ -274,7 +274,7 @@ final class UCEFWOO_theme_class {
         // Get localized array.
 		$localize_array = self::localize_array();
 
-        if( strstr( $_SERVER['SERVER_NAME'], 'test' ) ) {
+        if( strstr( $_SERVER['SERVER_NAME'], 'testdd' ) ) {
 
             // Enqueue styles & scripts in development mode
             wp_enqueue_script( 'ucef-woo-main', 'http://localhost:3000/bundled.js', ['jquery'], '1.0', true );
@@ -287,10 +287,10 @@ final class UCEFWOO_theme_class {
             $theme_version = UCEF_WOO_THEME_VERSION;
 
             // Main Style.css file
-            wp_enqueue_style( 'ucef-woo-style', $dirCSS . 'main.min.css', false, $theme_version );
+            wp_enqueue_style( 'ucef-woo-style', $dirCSS . 'main.css', false, $theme_version );
 
             // Load minified js.
-            wp_enqueue_script( 'ucef-woo-main', $dirJS . 'main.min.js', array( 'jquery' ), $theme_version, true );
+            wp_enqueue_script( 'ucef-woo-main', $dirJS . 'main.js', array( 'jquery' ), $theme_version, true );
             
         }
         
